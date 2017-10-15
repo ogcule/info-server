@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Home.scss';
 
-function App(props) {
+function Home(props) {
   return (
     <div>
       <h1 className={styles.heading}>Hello {props.name}</h1>
@@ -10,12 +10,12 @@ function App(props) {
   );
 }
 
-App.propTypes = {
+Home.propTypes = {
   name: PropTypes.string,
 };
 
-App.defaultProps = {
+Home.defaultProps = {
   name: 'Stranger',
 };
 
-export default App;
+export default Home;

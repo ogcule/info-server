@@ -1,7 +1,8 @@
 import React from 'react';
+import styles from './Topics.scss';
 
 const Topics = () => (
-  <div>
+  <div className={styles.heading}>
     <h2>Topics</h2>
   </div>
 );
