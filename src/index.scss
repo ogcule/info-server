@@ -1,6 +1,7 @@
+@import "partials/colors";
 body{
-  background: lighten(black, 20%);
-  color: #ffffff;
+  background: $white;
+  color: $blue;
   height: 100%;
   width: 100%;
   padding: 0;

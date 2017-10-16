@@ -1,22 +1,29 @@
+@import "../../partials/colors";
+
 .nav {
-  background: lighten(black, 80%);
+  background: $yellow;
   height: 50px;
   width: 100%;
   padding-top: 0;
   margin-top: 0;
   display: flex;
   align-items: center;
+  header{
+    flex: 1;
+    padding-left: 10%;
+    font-size: 2em;
+  }
   ul{
+    flex: 1;
     display: flex;
+    flex-flow: row, nowrap;
     justify-content: space-around;
-    align-items: center;
-    flex-direction: row;
-    width:100%;
     margin: 0;
+    font-size: 1.2em;
   }
   a{
     text-decoration: none;
-    color: teal;
+    color: $orange;
   }
   li {
     list-style-type: none;
