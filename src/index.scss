@@ -1,9 +1,11 @@
 @import "partials/colors";
+html, body{
+  height: 100%;
+  width: 100%;
+}
 body{
   background: $white;
   color: $blue;
-  height: 100%;
-  width: 100%;
   padding: 0;
   margin: 0;
 }

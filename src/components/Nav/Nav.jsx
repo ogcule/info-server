@@ -38,7 +38,6 @@ const Nav = () => (
         <Route component={NotFound} />
       </Switch>
     </div>
-
   </Router>
 );
 

@@ -2,7 +2,7 @@
 
 .nav {
   background: $yellow;
-  height: 50px;
+  // height: 50%;
   width: 100%;
   padding-top: 0;
   margin-top: 0;
@@ -20,6 +20,7 @@
     justify-content: space-around;
     margin: 0;
     font-size: 1.2em;
+    align-self: flex-end;
   }
   a{
     text-decoration: none;
