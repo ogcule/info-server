@@ -15,7 +15,7 @@ Home.propTypes = {
 };
 
 Home.defaultProps = {
-  name: 'Stranger',
+  name: 'Friend',
 };
 
 export default Home;

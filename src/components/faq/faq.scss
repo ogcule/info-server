@@ -1,0 +1,12 @@
+@import "../../partials/colors";
+
+.flexContainer {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+.displayFaq{
+  display: flex;
+  flex-flow: row nowrap;
+  border-color: $base;
+}
