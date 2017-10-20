@@ -1,15 +1,13 @@
 import axios from 'axios';
 
-function getFAQ() {
-  return axios.get('http://localhost:3000/faq').then((response) => {
-    console.log(response);
-  }).catch((error) => {
-    console.log(error);
-  });
+function getRequest(table) {
+  return axios.get(`http://localhost:3000/${table}`);
 }
 
-function hello() {
-  console.log('Hello World');
+function getAllFaqs(table) {
+  return getRequest(table)
+    .then(response => response.data)
+    .catch(error => console.log(error));
 }
 
-export { hello, getFAQ };
+export default getAllFaqs;
