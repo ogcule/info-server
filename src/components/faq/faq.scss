@@ -2,11 +2,30 @@
 
 .flexContainer {
   display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+ul{
+  margin: 0;
+  padding: 0;
+}
+.liHeading{
+  font-weight: bold;
+}
+.liAnswer {
+  background-color: lighten($base, 50%);
+  border-radius: 5px;
 }
 .displayFaq{
-  display: flex;
-  flex-flow: row nowrap;
-  border-color: $base;
+  border: #00BA7E solid 2px;
+  border-radius: 5px;
+  padding: 10px;
+  color: #00724D;
+  li{
+    margin: 0;
+    padding: 5px;
+    list-style-type: none;
+  }
 }
