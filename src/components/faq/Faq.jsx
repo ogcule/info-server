@@ -1,44 +1,30 @@
 import React from 'react';
 import styles from './faq.scss';
-import DisplayFaq from './Displayfaq';
-import getAllFaqs from './../../util/api';
-
+import QuestionForm from './QuestionForm';
+import Questions from './Questions';
 
 class Faq extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { faq: {} };
+    this.state = {
+      // message to say new question added
+      messageShown: false,
+    };
+    this.addMessageHandler = this.addMessageHandler.bind(this);
   }
 
-  componentDidMount() {
-    getAllFaqs('faq')
-      .then((data) => {
-        if (data) {
-          this.setState({
-            faq: data,
-            loaded: true,
-          });
-        } else {
-          this.setState({
-            loaded: false,
-          });
-        }
-      });
+  addMessageHandler() {
+    this.setState({
+      messageShown: true,
+    });
   }
+
   render() {
-    if (!this.state.loaded) {
-      return (
-        <div>
-          <h2>Frequently asked questions</h2>
-          <p>.....Loading</p>
-        </div>
-      );
-    }
-    console.log(this.state.faq);
     return (
       <div className={styles.flexContainer}>
         <h2>Frequently asked questions</h2>
-        <DisplayFaq allFaq={this.state.faq} />
+        <Questions messageShown={this.state.messageShown} />
+        <QuestionForm addMessage={this.state.addMessageHandler} />
       </div>
     );
   }

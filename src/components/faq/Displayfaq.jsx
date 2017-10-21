@@ -1,3 +1,4 @@
+// not uses at the moment
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './faq.scss';

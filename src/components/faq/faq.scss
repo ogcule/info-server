@@ -15,14 +15,16 @@ ul{
   font-weight: bold;
 }
 .liAnswer {
-  background-color: lighten($base, 50%);
+  background-color: lighten(#00BA7E, 50%);
   border-radius: 5px;
 }
-.displayFaq{
-  border: #00BA7E solid 2px;
+.questions{
+  border: $base solid 2px;
   border-radius: 5px;
   padding: 10px;
+  max-height: 200px;
   color: #00724D;
+  overflow: auto;
   li{
     margin: 0;
     padding: 5px;
