@@ -5,9 +5,11 @@
   width: 100%;
 }
 .flexContainer {
+  height: 100%;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
+
 }
 .header {
   background: $blue;

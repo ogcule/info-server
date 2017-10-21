@@ -38,28 +38,30 @@ class QuestionForm extends React.Component {
     })
       .then((response) => {
         console.log(response.data);
+        this.props.addMessage();
+        this.props.updateQuestions();
       })
       .catch(error => console.log(error));
   }
 
   render() {
     return (
-      <form method="post" onSubmit={this.handleSubmit} className={styles.flexContainer}>
-        <legend>Add a new Frequently asked question</legend>
-        <div>
+      <form method="post" onSubmit={this.handleSubmit} className={styles.formContainer}>
+        <legend>Add a new frequently asked question</legend>
+        <div className={styles.formRow}>
           <label htmlFor="question">
             New Question
             <input name="question" type="text" id="question" value={this.state.question} onChange={this.handleInputChange} required />
           </label>
         </div>
-        <div>
+        <div className={styles.formRow}>
           <label htmlFor="answer">
             Answer
             <textarea name="answer" type="text" id="answer" value={this.state.answer} onChange={this.handleInputChange} required />
           </label>
         </div>
-        <div>
-          <button type="submit" onClick={this.props.addMessage}>Submit</button>
+        <div className={styles.formBtn}>
+          <button type="submit" >Submit</button>
         </div>
       </form>
     );
@@ -68,9 +70,11 @@ class QuestionForm extends React.Component {
 
 QuestionForm.propTypes = {
   addMessage: PropTypes.func,
+  updateQuestions: PropTypes.func,
 };
 QuestionForm.defaultProps = {
   addMessage: function defaultfn() {},
+  updateQuestions: function defaultfn() {},
 };
 
 export default QuestionForm;

@@ -1,29 +1,67 @@
 @import "../../partials/colors";
 
-.flexContainer {
+.formContainer {
   display: flex;
   flex-flow: column nowrap;
-  justify-content: space-between;
-  align-items: flex-start;
+  border: $green solid 2px;
+  border-radius: 5px;
+  color: $green;
+  margin-top: 1em;
+  padding: 1em;
+  legend {
+    align-self: center;
+    font-size: 1.3em;
+    font-weight: bold;
+  }
 }
-
+.formBtn{
+  padding-left: 1em;
+  button {
+  font-size: 1em;
+  color: $white;
+  background-color: $green;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+}
+.formRow {
+  display: flex;
+  flex: 1;
+  margin: 1em;
+  label {
+    flex: 1;
+    display: flex;
+    flex-flow: column;
+    padding-bottom: 5px;
+    font-size: 1.2em;
+  }
+  input,textarea {
+    display: block;
+    flex: 1;
+    font-size: 1em;
+    padding: 5px;
+  }
+  }
 ul{
   margin: 0;
   padding: 0;
 }
 .liHeading{
   font-weight: bold;
+  font-size: 1.2em;
 }
 .liAnswer {
-  background-color: lighten(#00BA7E, 50%);
+  background-color: lighten($light-green, 50%);
   border-radius: 5px;
+  font-size: 1.1em
 }
 .questions{
   border: $base solid 2px;
   border-radius: 5px;
   padding: 10px;
   max-height: 200px;
-  color: #00724D;
+  color: $green;
   overflow: auto;
   li{
     margin: 0;
