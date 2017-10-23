@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Nav from './../Nav/Nav';
+import Services from './../Services/Services';
 import Home from './../Home/Home';
-import About from './../About/About';
 import Faq from './../faq/Faq';
 import styles from './App.scss';
 
@@ -25,7 +25,7 @@ const App = () => (
       <div className={styles.flexContainer}>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/about" component={About} />
+          <Route path="/Services" component={Services} />
           <Route path="/faq" component={Faq} />
           <Route component={NotFound} />
         </Switch>

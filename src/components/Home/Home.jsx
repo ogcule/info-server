@@ -1,21 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import styles from './Home.scss';
+import styles from './home.scss';
 
-function Home(props) {
-  return (
-    <div>
-      <h1 className={styles.heading}>Hello {props.name}</h1>
-    </div>
-  );
-}
-
-Home.propTypes = {
-  name: PropTypes.string,
-};
-
-Home.defaultProps = {
-  name: 'Friend',
-};
+const Home = () => (
+  <div className={styles.container}>
+    <h2>Home</h2>
+    <div className={styles.about} />
+  </div>
+);
 
 export default Home;
