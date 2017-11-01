@@ -1,5 +1,9 @@
-@import "../../partials/colors";
-
+@import "../../styles/colors";
+@import "../../styles/buttons";
+.closebtn{
+  @include reset-button(1.5em);
+  float: right;
+}
 .formContainer {
   display: flex;
   flex-flow: column nowrap;
@@ -9,7 +13,7 @@
   margin-top: 1em;
   padding: 1em;
   legend {
-    align-self: center;
+    text-align: center;
     font-size: 1.3em;
     font-weight: bold;
   }
@@ -68,4 +72,7 @@ ul{
     padding: 5px;
     list-style-type: none;
   }
+}
+.errorText {
+  color: red;
 }

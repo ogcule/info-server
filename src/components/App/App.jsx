@@ -1,10 +1,11 @@
+// routes component
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Nav from './../Nav/Nav';
 import Services from './../Services/Services';
 import Home from './../Home/Home';
-import Faq from './../faq/Faq';
+import Faq from './../../containers/faq/Faq';
+import Title from './Title';
 import styles from './App.scss';
 
 const NotFound = ({ location }) => (
@@ -18,10 +19,7 @@ const NotFound = ({ location }) => (
 const App = () => (
   <Router>
     <div className={styles.container}>
-      <header className={styles.header}>
-        <h1>Information Portal</h1>
-        <Nav />
-      </header>
+      <Title />
       <div className={styles.flexContainer}>
         <Switch>
           <Route exact path="/" component={Home} />

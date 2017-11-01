@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './faq.scss';
-
+// stateless component that adds message when new FAQ added.
+// I need to make this go away, either by clicking on it or timed
 const AddMessage = () => <li>Thank you for adding a new entry</li>;
+// component for displaying the frequently asked questions
 const Questions = (props) => {
   if (!props.loaded) {
     return <p>.....Loading</p>;
