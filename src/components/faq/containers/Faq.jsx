@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import styles from './../../components/faq/faq.scss';
-import QuestionForm from './../../components/faq/QuestionForm';
-import Questions from './../../components/faq/Questions';
+import styles from './../faq.scss';
+import QuestionForm from './../QuestionForm';
+import Questions from './../Questions';
 // stateless component for button to open the form to add questions and answers
 const AddQuestion = props => (
   <div>

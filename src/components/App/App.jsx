@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Services from './../Services/Services';
 import Home from './../Home/Home';
-import Faq from './../../containers/faq/Faq';
+import Faq from './../faq/containers/Faq';
 import Title from './Title';
 import styles from './App.scss';
 

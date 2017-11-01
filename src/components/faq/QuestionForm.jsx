@@ -52,7 +52,7 @@ class QuestionForm extends React.Component {
         console.log(error.response.data.error);
         this.setState({
           errorMsg: {
-            // need to get different error messsge to answer and questions. 
+            // need to get different error messsge to answer and questions.
             question: error.response.data.error.question.msg,
             answer: error.response.data.error.answer.msg,
           },
