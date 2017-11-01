@@ -37,7 +37,17 @@ class QuestionForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     apiFaq.requestPost(this.state.question, this.state.answer)
-          .then(data => console.log(data));
+          .then((data) => {
+            let { answer=null, question=null } = data;
+            console.log( answer, question );
+            this.setState({
+                  errorMsg: {
+                    // need to get different error messsge to answer and questions.
+                    question,
+                    answer,
+                  },
+          });
+        })
     // axios({
     //   method: 'post',
     //   url: 'http://localhost:3000/faq',
@@ -73,13 +83,14 @@ class QuestionForm extends React.Component {
             <label htmlFor="question">
               New Question
               <input name="question" type="text" id="question" value={this.state.question} onChange={this.handleInputChange} />
+              { this.state.errorMsg.question && <ErrorMsg msg={this.state.errorMsg.question} /> }
             </label>
           </div>
           <div className={styles.formRow}>
             <label htmlFor="answer">
               Answer
               <textarea name="answer" type="text" id="answer" value={this.state.answer} onChange={this.handleInputChange} />
-              <ErrorMsg msg={this.state.errorMsg.answer} />
+              { this.state.errorMsg.answer && <ErrorMsg msg={this.state.errorMsg.answer} /> }
             </label>
           </div>
           <div className={styles.formBtn}>
