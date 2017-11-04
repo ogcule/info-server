@@ -4,10 +4,17 @@
 .faqBox{
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
 }
-.closebtn{
+.closebtn {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  button {
   @include reset-button(1.5em);
-  float: right;
+}
 }
 .add{
   button{
@@ -17,15 +24,27 @@
 hr {
   color: blue;
 }
+li.message {
+  color: darken($brown, 20%);
+  background-color: lighten($brown, 30%);
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
 .formContainer {
-  display: flex;
-  flex-flow: column nowrap;
+  flex: 1;
+  min-width: 50%;
   font-family: $text;
   border: $brown solid 2px;
   border-radius: 5px;
   color: darken($brown, 20%);
+  background-color: lighten($brown, 30%);
   margin-top: 1em;
   padding: 1em;
+  form {
+    background-color: $white;
+    border-radius: 5px;
+    padding: 5px;
+  }
   legend {
     text-align: center;
     font-size: 1.3em;
@@ -45,7 +64,6 @@ hr {
 }
 .formRow {
   display: flex;
-  flex: 1;
   margin: 1em;
   label {
     flex: 1;
@@ -68,7 +86,6 @@ ul{
 .liHeading{
   font-weight: bold;
   font-size: 1.3em;
-  // border-bottom: black 2px solid;
   hr {
     height: 1px;
     color: $base;
@@ -82,12 +99,12 @@ ul{
   font-size: 1.1em
 }
 .questions{
-  max-width: 80%;
+  flex: 1;
+  min-width: 80%;
   border: $base solid 2px;
   border-radius: 5px;
   background-color: lighten($base, 40%);
   padding: 10px;
-  max-height: 300px;
   color: darken($base, 10%);
   overflow: auto;
   ul{
@@ -96,7 +113,6 @@ ul{
     border-radius: 5px;
   }
   li{
-    margin: 0;
     padding: 5px;
     list-style-type: none;
   }

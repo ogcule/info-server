@@ -20,7 +20,7 @@ const App = () => (
   <Router>
     <div className={styles.container}>
       <Title />
-      <div className={styles.flexContainer}>
+      <div className={styles.innerContainer}>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/Services" component={Services} />

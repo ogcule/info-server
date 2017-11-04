@@ -4,15 +4,15 @@ import styles from './faq.scss';
 import ErrorMsg from './ErrorMessage';
 
 const CloseForm = props => (
-  <div>
-    <button className={styles.closebtn} onClick={props.closeForm}>&times;</button>
+  <div className={styles.closebtn}>
+    <button onClick={props.closeForm}>&times;</button>
   </div>
 );
 
 const Form = props => (
   <div className={styles.formContainer}>
     <CloseForm closeForm={props.closeForm} />
-    <form method="post" onSubmit={props.handleSubmit} noValidate>
+    <form method="post" className={styles.formBox} onSubmit={props.handleSubmit} noValidate>
       <legend>Add a new frequently asked question</legend>
       <div className={styles.formRow}>
         <label htmlFor="question">

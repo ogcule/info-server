@@ -42,7 +42,9 @@ class FormContainer extends React.Component {
           },
         });
         if ((this.state.errorMsg.answer === '') && (this.state.errorMsg.question === '')) {
+          // shows thank you message for set time and updates questions
           this.props.addMessage();
+          setTimeout(() => { this.props.addMessage(); }, 3000);
           this.props.updateQuestions();
         }
       });

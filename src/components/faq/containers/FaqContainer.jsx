@@ -42,9 +42,7 @@ class FaqContainer extends React.Component {
     this.getQuestions();
   }
   addMessageHandler() {
-    this.setState({
-      messageShown: true,
-    });
+    this.setState(prevState => ({ messageShown: !prevState.messageShown }));
   }
   // handler to change state for expanding the questions form
   handleFormChange() {
