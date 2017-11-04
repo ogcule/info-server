@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import styles from './../faq.scss';
-import QuestionForm from './../QuestionForm';
+import FormContainer from './../FormContainer';
 import Questions from './../Questions';
 // stateless component for button to open the form to add questions and answers
 const AddQuestion = props => (
@@ -70,7 +70,7 @@ class Faq extends React.Component {
           loaded={this.state.loaded}
         />
         {!this.state.expanded ? <AddQuestion openForm={this.handleFormChange} />
-                                : <QuestionForm
+                                : <FormContainer
                                   addMessage={this.addMessageHandler}
                                   updateQuestions={this.updateQuestionsHandler}
                                   closeForm={this.handleFormChange}

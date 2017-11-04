@@ -1,0 +1,64 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import styles from './faq.scss';
+import ErrorMsg from './ErrorMessage';
+
+const CloseForm = props => (
+  <div>
+    <button className={styles.closebtn} onClick={props.closeForm}>&times;</button>
+  </div>
+);
+
+const Form = props => (
+  <div className={styles.formContainer}>
+    <CloseForm closeForm={props.closeForm} />
+    <form method="post" onSubmit={props.handleSubmit} noValidate>
+      <legend>Add a new frequently asked question</legend>
+      <div className={styles.formRow}>
+        <label htmlFor="question">
+          New Question
+          <input name="question" type="text" id="question" value={props.valueQuestion} onChange={props.handleInputChange} />
+          {props.errorQuestion && <ErrorMsg msg={props.errorQuestion} />}
+        </label>
+      </div>
+      <div className={styles.formRow}>
+        <label htmlFor="answer">
+          Answer
+          <textarea name="answer" type="text" id="answer" value={props.valueAnswer} onChange={props.handleInputChange} />
+          {props.errorAnswer && <ErrorMsg msg={props.errorAnswer} />}
+        </label>
+      </div>
+      <div className={styles.formBtn}>
+        <button type="submit" >Submit</button>
+      </div>
+    </form>
+  </div>
+);
+// propTypes and defaultProps
+Form.propTypes = {
+  closeForm: PropTypes.func,
+  handleSubmit: PropTypes.func,
+  errorQuestion: PropTypes.string,
+  valueQuestion: PropTypes.string,
+  valueAnswer: PropTypes.string,
+  handleInputChange: PropTypes.func,
+  errorAnswer: PropTypes.string,
+};
+Form.defaultProps = {
+  closeForm: null,
+  handleSubmit: null,
+  errorQuestion: null,
+  valueQuestion: null,
+  valueAnswer: null,
+  handleInputChange: null,
+  errorAnswer: null,
+};
+
+CloseForm.propTypes = {
+  closeForm: PropTypes.func,
+};
+CloseForm.defaultProps = {
+  closeForm: function defaultfn() {},
+};
+
+export default Form;
