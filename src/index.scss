@@ -1,4 +1,5 @@
 @import "styles/colors";
+@import "styles/fonts";
 * {
   box-sizing: border-box;
 }
@@ -12,4 +13,8 @@ body{
   color: $blue;
   padding: 0;
   margin: 0;
+  font-family: $text;
+}
+li {
+  font-family: $text;
 }

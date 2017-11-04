@@ -1,15 +1,29 @@
 @import "../../styles/colors";
 @import "../../styles/buttons";
+@import "../../styles/fonts";
+.faqBox{
+  height: 100%;
+  width: 100%;
+}
 .closebtn{
   @include reset-button(1.5em);
   float: right;
 }
+.add{
+  button{
+    @include button(1em, lighten($brown, 40%), $brown);
+}
+}
+hr {
+  color: blue;
+}
 .formContainer {
   display: flex;
   flex-flow: column nowrap;
-  border: $green solid 2px;
+  font-family: $text;
+  border: $brown solid 2px;
   border-radius: 5px;
-  color: $green;
+  color: darken($brown, 20%);
   margin-top: 1em;
   padding: 1em;
   legend {
@@ -23,7 +37,7 @@
   button {
   font-size: 1em;
   color: $white;
-  background-color: $green;
+  background-color: $brown;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -53,20 +67,34 @@ ul{
 }
 .liHeading{
   font-weight: bold;
-  font-size: 1.2em;
+  font-size: 1.3em;
+  // border-bottom: black 2px solid;
+  hr {
+    height: 1px;
+    color: $base;
+    background: $base;
+    font-size: 0;
+    border: 0;
+  }
 }
 .liAnswer {
-  background-color: lighten($light-green, 50%);
-  border-radius: 5px;
+  color: black;
   font-size: 1.1em
 }
 .questions{
+  max-width: 80%;
   border: $base solid 2px;
   border-radius: 5px;
+  background-color: lighten($base, 40%);
   padding: 10px;
-  max-height: 200px;
-  color: $green;
+  max-height: 300px;
+  color: darken($base, 10%);
   overflow: auto;
+  ul{
+    margin-bottom: 5px;
+    background-color: $white;
+    border-radius: 5px;
+  }
   li{
     margin: 0;
     padding: 5px;

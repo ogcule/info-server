@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import apiFaq from './../../api/apiFaq';
-import Form from './Form';
+import apiFaq from './../../../api/apiFaq';
+import Form from './../Form';
 
 // component with the form to submit new question and answers to the database
 class FormContainer extends React.Component {
@@ -10,7 +10,10 @@ class FormContainer extends React.Component {
     this.state = {
       question: '',
       answer: '',
-      errorMsg: [],
+      errorMsg: {
+        answer: '',
+        question: '',
+      },
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,7 +33,7 @@ class FormContainer extends React.Component {
     event.preventDefault();
     apiFaq.requestPost(this.state.question, this.state.answer)
       .then((data) => {
-        const { answer = null, question = null } = data;
+        const { answer = '', question = '' } = data;
         console.log(answer, question);
         this.setState({
           errorMsg: {
@@ -38,8 +41,10 @@ class FormContainer extends React.Component {
             answer,
           },
         });
-        this.props.addMessage();
-        this.props.updateQuestions();
+        if ((this.state.errorMsg.answer === '') && (this.state.errorMsg.question === '')) {
+          this.props.addMessage();
+          this.props.updateQuestions();
+        }
       });
   }
   render() {

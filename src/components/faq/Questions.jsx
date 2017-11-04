@@ -16,7 +16,7 @@ const Questions = (props) => {
         const { id, question, answer } = obj;
         return (
           <ul key={id} data-id={id}>
-            <li className={styles.liHeading}>{question}</li>
+            <li className={styles.liHeading}>{question}<hr /></li>
             <li className={styles.liAnswer}>{answer}</li>
           </ul>
         );

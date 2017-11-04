@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Services from './../Services/Services';
 import Home from './../Home/Home';
-import Faq from './../faq/containers/Faq';
+import FaqContainer from './../faq/containers/FaqContainer';
 import Title from './Title';
 import styles from './App.scss';
 
@@ -24,7 +24,7 @@ const App = () => (
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/Services" component={Services} />
-          <Route path="/faq" component={Faq} />
+          <Route path="/faq" component={FaqContainer} />
           <Route component={NotFound} />
         </Switch>
       </div>

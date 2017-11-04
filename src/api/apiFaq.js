@@ -27,4 +27,10 @@ export default {
         return errorMsgs;
       });
   },
+  requestGet() {
+    return axios.get('http://localhost:3000/faq')
+      .then(response => response.data)
+      .catch(error => console.log(error));
+  },
+
 };
