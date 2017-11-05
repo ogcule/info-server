@@ -1,12 +1,9 @@
 @import "../../styles/colors";
 @import "../../styles/buttons";
 @import "../../styles/fonts";
+@import "../../styles/container";
 .faqBox{
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
+  @extend .outerBox;
 }
 .closebtn {
   flex: 1;

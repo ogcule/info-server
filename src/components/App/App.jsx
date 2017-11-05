@@ -2,7 +2,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Services from './../Services/Services';
+import ServicesContainer from './../Services/containers/ServicesContainer';
 import Home from './../Home/Home';
 import FaqContainer from './../faq/containers/FaqContainer';
 import Title from './Title';
@@ -23,7 +23,7 @@ const App = () => (
       <div className={styles.innerContainer}>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/Services" component={Services} />
+          <Route path="/Services" component={ServicesContainer} />
           <Route path="/faq" component={FaqContainer} />
           <Route component={NotFound} />
         </Switch>

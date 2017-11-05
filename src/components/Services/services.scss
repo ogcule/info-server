@@ -1,4 +1,8 @@
-.heading {
-  margin: 0;
-  padding-top: 1em;
+@import "../../styles/colors";
+@import "../../styles/buttons";
+@import "../../styles/fonts";
+@import "../../styles/container";
+
+.servicesBox {
+  @extend .outerBox;
 }
