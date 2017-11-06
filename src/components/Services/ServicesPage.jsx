@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import styles from './services.scss';
 import Subtitle from './../shared/Subtitle';
 import ServicesTable from './ServicesTable';
+import OpenFormBtn from './../shared/OpenFormBtn';
+import ServiceForm from './ServiceForm';
 
 const ServicesPage = props => (
   <div className={styles.servicesBox}>
@@ -11,6 +13,11 @@ const ServicesPage = props => (
       allServices={props.allServices}
       loaded={props.loaded}
     />
+    {!props.expanded ? <OpenFormBtn text="Add Service" openForm={props.handleFormChange} />
+                            : <ServiceForm
+                              closeForm={props.handleFormChange}
+                            />
+    }
   </div>
 );
 ServicesPage.propTypes = {
@@ -26,10 +33,13 @@ ServicesPage.propTypes = {
     telephone: PropTypes.number,
     address: PropTypes.string,
   })),
+  handleFormChange: PropTypes.func,
+  expanded: PropTypes.bool,
 };
 ServicesPage.defaultProps = {
   loaded: false,
   allServices: null,
+  handleFormChange: null,
+  expanded: false,
 };
-
 export default ServicesPage;

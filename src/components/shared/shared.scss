@@ -1,9 +1,23 @@
 @import "../../styles/colors";
 @import "../../styles/fonts";
+@import "../../styles/buttons";
 .subtitle {
   font-family: $heading;
   font-size: 2.2em;
   text-align: center;
   margin-top: 0;
   flex:0 1 auto;
+}
+.add{
+  button{
+    @include button(1em, lighten($brown, 40%), $brown);
+}
+}
+.closebtn {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  button {
+  @include reset-button(1.5em);
+}
 }

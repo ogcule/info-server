@@ -5,19 +5,6 @@
 .faqBox{
   @extend .outerBox;
 }
-.closebtn {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  button {
-  @include reset-button(1.5em);
-}
-}
-.add{
-  button{
-    @include button(1em, lighten($brown, 40%), $brown);
-}
-}
 li.message {
   color: darken($brown, 20%);
   background-color: lighten($brown, 30%);

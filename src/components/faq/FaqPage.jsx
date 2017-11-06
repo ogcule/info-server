@@ -4,12 +4,7 @@ import Questions from './Questions';
 import styles from './faq.scss';
 import FormContainer from './containers/FormContainer';
 import Subtitle from './../shared/Subtitle';
-
-const AddQuestion = props => (
-  <div className={styles.add}>
-    <p><button onClick={props.openForm}>+</button>  Add a new question</p>
-  </div>
-);
+import OpenFormBtn from './../shared/OpenFormBtn';
 
 const FaqPage = props => (
   <div className={styles.faqBox}>
@@ -19,7 +14,7 @@ const FaqPage = props => (
       questions={props.questions}
       loaded={props.loaded}
     />
-    {!props.expanded ? <AddQuestion openForm={props.handleFormChange} />
+    {!props.expanded ? <OpenFormBtn text="Add Question" openForm={props.handleFormChange} />
                             : <FormContainer
                               addMessage={props.addMessage}
                               updateQuestions={props.updateQuestions}
@@ -51,10 +46,10 @@ FaqPage.defaultProps = {
   addMessage: null,
   updateQuestions: null,
 };
-AddQuestion.propTypes = {
+OpenFormBtn.propTypes = {
   openForm: PropTypes.func,
 };
-AddQuestion.defaultProps = {
+OpenFormBtn.defaultProps = {
   openForm: null,
 };
 

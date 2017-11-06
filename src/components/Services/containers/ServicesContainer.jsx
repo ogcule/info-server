@@ -8,7 +8,9 @@ class ServicesContainer extends React.Component {
     this.state = {
       allServices: {},
       loaded: false,
+      expanded: false,
     };
+    this.handleFormChange = this.handleFormChange.bind(this);
   }
   componentDidMount() {
     this.getAllServices();
@@ -30,6 +32,10 @@ class ServicesContainer extends React.Component {
         }
       });
   }
+  // handler to change state for expanding the questions form
+  handleFormChange() {
+    this.setState(prevState => ({ expanded: !prevState.expanded }));
+  }
   render() {
     console.log(this.state.loaded);
     console.log(this.state.allServices);
@@ -37,6 +43,8 @@ class ServicesContainer extends React.Component {
       <ServicesPage
         allServices={this.state.allServices}
         loaded={this.state.loaded}
+        expanded={this.state.expanded}
+        handleFormChange={this.handleFormChange}
       />
     );
   }

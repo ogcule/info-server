@@ -2,16 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './faq.scss';
 import ErrorMsg from './ErrorMessage';
-
-const CloseForm = props => (
-  <div className={styles.closebtn}>
-    <button onClick={props.closeForm}>&times;</button>
-  </div>
-);
+import CloseFormBtn from './../shared/CloseFormBtn';
 
 const Form = props => (
   <div className={styles.formContainer}>
-    <CloseForm closeForm={props.closeForm} />
+    <CloseFormBtn closeForm={props.closeForm} />
     <form method="post" className={styles.formBox} onSubmit={props.handleSubmit} noValidate>
       <legend>Add a new frequently asked question</legend>
       <div className={styles.formRow}>
@@ -54,10 +49,10 @@ Form.defaultProps = {
   errorAnswer: null,
 };
 
-CloseForm.propTypes = {
+CloseFormBtn.propTypes = {
   closeForm: PropTypes.func,
 };
-CloseForm.defaultProps = {
+CloseFormBtn.defaultProps = {
   closeForm: function defaultfn() {},
 };
 
