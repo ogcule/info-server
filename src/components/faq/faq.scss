@@ -18,9 +18,6 @@
     @include button(1em, lighten($brown, 40%), $brown);
 }
 }
-hr {
-  color: blue;
-}
 li.message {
   color: darken($brown, 20%);
   background-color: lighten($brown, 30%);

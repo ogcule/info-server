@@ -6,3 +6,38 @@
 .servicesBox {
   @extend .outerBox;
 }
+hr {
+  height: 1px;
+  color: $base;
+  background: $base;
+  font-size: 0;
+  border: 0;
+  margin: 5px 0;
+}
+ul {
+  list-style-type: none;
+}
+table {
+  border-collapse: collapse;
+  width: 90%;
+  color: black;
+}
+thead{
+  background-color: lighten($base, 40%);
+  color: $base;
+}
+th, td {
+  padding: 0.25rem;
+  text-align: left;
+  border: 1px solid $base;
+}
+.services{
+li {
+  padding: 0.25rem;
+  span{
+    display: block;
+    color: $base;
+    font-weight:600;
+  }
+}
+}
