@@ -15,12 +15,13 @@ const ServicesTable = (props) => {
           <th>Service</th>
           <th>Contact details</th>
           <th>Category</th>
+          <th>RCGP Category</th>
         </tr>
       </thead>
       <tbody>
         {props.allServices.map((obj) => {
           const {
-            id, name, category, description, image, link, email, telephone, address,
+            id, name, category, description, image, link, email, telephone, address, rcgpCurriculum,
           } = obj;
           return (
             <tr key={id} data-id={id}>
@@ -40,6 +41,7 @@ const ServicesTable = (props) => {
                 </ul>
               </td>
               <td>{category}</td>
+              <td>{rcgpCurriculum}</td>
             </tr>
           );
         })}
