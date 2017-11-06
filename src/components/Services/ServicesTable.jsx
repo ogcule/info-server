@@ -36,7 +36,7 @@ const ServicesTable = (props) => {
                   <li><span>Address:</span> {address}</li>
                   <li><span>Tel:</span> {telephone}</li>
                   <li><span>Email:</span><a href={`mailto:${email}`} target="_blank">{email}</a></li>
-                  <li><span><img src={linkImg} alt="web link" /> :</span><a href={link} target="_blank">{link}</a></li>
+                  <li><span><img src={linkImg} alt="web link" /> :</span><a href={link} target="_blank">{name}</a></li>
                 </ul>
               </td>
               <td>{category}</td>

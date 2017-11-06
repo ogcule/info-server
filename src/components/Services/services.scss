@@ -40,4 +40,14 @@ li {
     font-weight:600;
   }
 }
+a {
+  text-decoration: none;
+  &:link {
+    color: $base;
+  }
+  &:hover{
+    text-decoration: underline;
+  }
+}
+
 }
