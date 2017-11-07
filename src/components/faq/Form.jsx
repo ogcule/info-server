@@ -5,7 +5,7 @@ import ErrorMsg from './ErrorMessage';
 import CloseFormBtn from './../shared/CloseFormBtn';
 
 const Form = props => (
-  <div className={styles.formContainer}>
+  <div className={styles.formContainerFaq}>
     <CloseFormBtn closeForm={props.closeForm} />
     <form method="post" className={styles.formBox} onSubmit={props.handleSubmit} noValidate>
       <legend>Add a new frequently asked question</legend>

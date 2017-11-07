@@ -9,15 +9,26 @@ import ServiceForm from './ServiceForm';
 const ServicesPage = props => (
   <div className={styles.servicesBox}>
     <Subtitle subtitle="Services" />
+    {!props.expanded ? <OpenFormBtn text="Add Service" openForm={props.handleFormChange} />
+                            : <ServiceForm
+                              closeForm={props.handleFormChange}
+                              handleInputChange={props.handleInputChange}
+                              handleSubmit={props.handleSubmit}
+                              valueImage={props.valueImage}
+                              valueName={props.valueName}
+                              valueCategory={props.valueCategory}
+                              valueRcgpCategory={props.valueRcgpCategory}
+                              valueDescription={props.valueDescription}
+                              valueAddress={props.valueAddress}
+                              valueTelephone={props.valueTelephone}
+                              valueEmail={props.valueEmail}
+                              valueWeblink={props.valueWeblink}
+                            />
+    }
     <ServicesTable
       allServices={props.allServices}
       loaded={props.loaded}
     />
-    {!props.expanded ? <OpenFormBtn text="Add Service" openForm={props.handleFormChange} />
-                            : <ServiceForm
-                              closeForm={props.handleFormChange}
-                            />
-    }
   </div>
 );
 ServicesPage.propTypes = {
@@ -34,12 +45,16 @@ ServicesPage.propTypes = {
     address: PropTypes.string,
   })),
   handleFormChange: PropTypes.func,
+  handleSubmit: PropTypes.func,
   expanded: PropTypes.bool,
+  valueName: PropTypes.string,
 };
 ServicesPage.defaultProps = {
   loaded: false,
   allServices: null,
   handleFormChange: null,
+  handleSubmit: null,
   expanded: false,
+  valueName: '',
 };
 export default ServicesPage;

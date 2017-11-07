@@ -6,7 +6,9 @@
   align-items: center;
 }
 .formContainer {
-  flex: 1;
+  flex: 1 0 auto;
+  display: flex;
+  flex-flow: column nowrap;
   min-width: 50%;
   font-family: $text;
   border: $brown solid 2px;
@@ -14,15 +16,5 @@
   color: darken($brown, 20%);
   background-color: lighten($brown, 30%);
   margin-top: 1em;
-  padding: 1em;
-  form {
-    background-color: $white;
-    border-radius: 5px;
-    padding: 5px;
-  }
-  legend {
-    text-align: center;
-    font-size: 1.3em;
-    font-weight: bold;
-  }
+  padding: 0 1em 1em 1em;
 }

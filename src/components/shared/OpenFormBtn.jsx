@@ -4,7 +4,7 @@ import styles from './shared.scss';
 
 const OpenFormBtn = props => (
   <div className={styles.add}>
-    <p><button onClick={props.openForm}>+</button> {props.text}</p>
+    <p>{props.text} <button onClick={props.openForm}>+</button></p>
   </div>
 );
 

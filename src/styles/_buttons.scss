@@ -18,3 +18,15 @@
   font-size: $text;
   cursor: pointer;
 }
+.formBtn{
+  padding-left: 1em;
+  button {
+  float: right;
+  font-size: 1em;
+  color: $white;
+  background-color: $brown;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+}

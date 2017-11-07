@@ -5,16 +5,22 @@
   font-family: $heading;
   font-size: 2.2em;
   text-align: center;
-  margin-top: 0;
+  margin: 0;
   flex:0 1 auto;
 }
 .add{
+  width: 80%;
+  text-align: right;
+  p{
+  margin: 0;
+  padding: 0.2rem;
+}
   button{
     @include button(1em, lighten($brown, 40%), $brown);
 }
 }
 .closebtn {
-  flex: 1;
+  flex: 0 1 auto;
   display: flex;
   justify-content: flex-end;
   button {

@@ -39,25 +39,60 @@ const ServiceForm = (props) => {
     { 21: 'Care of People with Skin Problems' },
   ];
   return (
-    <div className={styles.formContainer}>
+    <div className={styles.formContainerServices}>
       <CloseFormBtn closeForm={props.closeForm} />
-      <form method="post" >
-        <section>
+      <form method="post" onSubmit={props.handleSubmit} >
+        <legend>Add a service</legend>
           <label htmlFor="rcgp">
-            Category (RCGP)
-            <select id="rcgp" name="catrcgp">
+            Category (RCGP):
+            <select id="rcgp" name="rcgpCategory" value={props.valueRcgpCategory} onChange={props.handleInputChange}>
               {rcgpCurriculum.map(heading => (
-                <option key={Object.keys(heading)[0]}>{heading[Object.keys(heading)[0]]}
+                <option key={Object.keys(heading)[0]} value={heading[Object.keys(heading)[0]]}>
+                  {heading[Object.keys(heading)[0]]}
                 </option>))}
             </select>
-            <label htmlFor="category">
-              Category
-              <select id="category" name="category">
-                {categories.map(category => <option>{category}</option>)}
-              </select>
-            </label>
           </label>
-        </section>
+          <label htmlFor="category">
+              Category:
+              <select id="category" value={props.valueCategory} name="category" onChange={props.handleInputChange}>
+                {categories.map(category => (
+                  <option key={category} value={category}>
+                    {category}
+                  </option>))}
+              </select>
+          </label>
+          <label htmlFor="name">
+            Name of Service:
+            <input id="name" name="name" type="text" value={props.valueName} onChange={props.handleInputChange} />
+          </label>
+          <label htmlFor="description">
+            Description of Service:
+            <textarea id="description" name="description" type="text" value={props.valueDescription} onChange={props.handleInputChange} />
+          </label>
+          <label htmlFor="address">
+            Address:
+            <textarea id="address" name="address" type="text" value={props.valueAddress} onChange={props.handleInputChange} />
+          </label>
+          <label htmlFor="telephone">
+            Telephone:
+            <input id="telephone" name="telephone" type="tel" value={props.valueTelephone} onChange={props.handleInputChange} />
+          </label>
+          <label htmlFor="email">
+          E-mail:
+            <input id="email" type="email" name="email" value={props.valueEmail} onChange={props.handleInputChange} />
+          </label>
+          <label htmlFor="weblink">
+          Web address:
+            <input id="weblink" type="url" name="weblink" value={props.valueWeblink} onChange={props.handleInputChange} />
+          </label>
+          <label htmlFor="image">
+          URL of image:
+            <input id="image" type="url" name="image" value={props.valueImage} onChange={props.handleInputChange} />
+          </label>
+
+          <div className={styles.formBtn}>
+            <button type="submit" >Submit</button>
+          </div>
       </form>
     </div>
   );
