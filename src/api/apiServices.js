@@ -7,36 +7,44 @@ export default {
       .then(response => response.data)
       .catch(error => console.log(error));
   },
-    requestPost(
-      name,
-      category,
-      description,
-      image,
-      weblink,
-      email,
-      telephone,
-      address,
-      rcgpCategory
-    ){
-  return axios({
-    method: 'post',
-    url: 'http://localhost:3000/service',
-    data: querystring.stringify({
-      name,
-      category,
-      description,
-      image,
-      weblink,
-      email,
-      telephone,
-      address,
-      rcgpCategory,
-     // property shorthand
-    }),
-  })
-  .then((response) => {
-    return response.data;
-  })
-  .catch(error => console.log(error));
-},
-}
+  requestPost(
+    name,
+    category,
+    description,
+    image,
+    weblink,
+    email,
+    telephone,
+    address,
+    rcgpCategory,
+    postcode,
+  ) {
+    return axios({
+      method: 'post',
+      url: 'http://localhost:3000/service',
+      data: querystring.stringify({
+        name,
+        category,
+        description,
+        image,
+        weblink,
+        email,
+        telephone,
+        address,
+        rcgpCategory,
+        postcode,
+        // property shorthand
+      }),
+    })
+      .then(response => response.data)
+      .catch((error) => {
+        const errorMsgs = {};
+        console.log(Object.keys(error.response.data.error));
+        Object.keys(error.response.data.error).map((val) => {
+          errorMsgs[val] = error.response.data.error[val].msg;
+          return errorMsgs;
+        });
+        return errorMsgs;
+      });
+  },
+};

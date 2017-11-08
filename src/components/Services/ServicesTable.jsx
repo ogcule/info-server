@@ -11,7 +11,7 @@ const ServicesTable = (props) => {
     <table>
       <thead>
         <tr>
-          <th></th>
+          <th />
           <th>Service</th>
           <th>Contact details</th>
           <th>Category</th>
@@ -21,7 +21,7 @@ const ServicesTable = (props) => {
       <tbody>
         {props.allServices.map((obj) => {
           const {
-            id, name, category, description, image, link, email, telephone, address, rcgp,
+            id, name, category, description, image, link, email, telephone, address, rcgp, postcode,
           } = obj;
           return (
             <tr key={id} data-id={id}>
@@ -35,6 +35,7 @@ const ServicesTable = (props) => {
               <td>
                 <ul className={styles.services}>
                   <li><span>Address:</span> {address}</li>
+                  <li><span>postcode:</span> {postcode}</li>
                   <li><span>Tel:</span> {telephone}</li>
                   <li><span>Email:</span><a href={`mailto:${email}`} target="_blank">{email}</a></li>
                   <li><span><img src={linkImg} alt="web link" /> :</span><a href={link} target="_blank">{name}</a></li>

@@ -10,14 +10,15 @@ class ServicesContainer extends React.Component {
       loaded: false,
       expanded: false,
       image: '',
-      rcgpCategory: '',
-      category: '',
+      rcgpCategory: 'Healthy People',
+      category: 'Community',
       name: '',
       description: '',
       address: '',
       telephone: '',
       email: '',
       weblink: '',
+      postcode: '',
     };
     this.handleFormChange = this.handleFormChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -59,20 +60,54 @@ class ServicesContainer extends React.Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    const formValues = [
-      this.state.name,
-      this.state.category,
-      this.state.description,
-      this.state.image,
-      this.state.weblink,
-      this.state.email,
-      this.state.telephone,
-      this.state.address,
-      this.state.rcgpCategory,
+    const formValuesMap = [
+      { name: this.state.name },
+      { category: this.state.category },
+      { description: this.state.description },
+      { image: this.state.image },
+      { weblink: this.state.weblink },
+      { email: this.state.email },
+      { telephone: this.state.telephone },
+      { address: this.state.address },
+      { rcgpCategory: this.state.rcgpCategory },
+      { postcode: this.state.postcode },
     ];
+    console.log('before function', formValuesMap);
+    const formValues = formValuesMap.map((key) => {
+      if (!Object.values(key)[0]) {
+        switch (Object.keys(key)[0]) {
+          case 'name':
+            break;
+            return '';
+          case 'description':
+            return '';
+            break;
+          case 'image':
+            return 'https://dummyimage.com/100x100/000/fff.png&text=service+image';
+            break;
+          case 'postcode':
+            return 'none';
+            break;
+          case 'telephone':
+            return '';
+            break;
+          case 'email':
+            return 'noemail@nomail.invalid';
+            break;
+           default :
+             return 'not available';
+      }
+    }
+    return Object.values(key)[0];
+      // if ((Object.keys(key)[0] === 'email') && (!Object.values(key)[0])) {
+      //   return 'noservices@nomail.invalid';
+      // }
+      // return Object.values(key)[0] || 'not available';
+    });
+    console.log('My function results',formValues);
     apiServices.requestPost(...formValues)
-    .then(data => console.log(data))
-    .catch(error => console.log(error));
+      .then(data => console.log(data))
+      .catch(error => console.log(error));
   }
   render() {
     console.log(this.state.loaded);
@@ -85,7 +120,7 @@ class ServicesContainer extends React.Component {
         handleFormChange={this.handleFormChange}
         handleInputChange={this.handleInputChange}
         handleSubmit={this.handleSubmit}
-        valueImage={this.state.Image}
+        valueImage={this.state.image}
         valueName={this.state.name}
         valueCategory={this.state.category}
         valueRcgpCategory={this.state.rcgpCategory}
@@ -94,6 +129,7 @@ class ServicesContainer extends React.Component {
         valueTelephone={this.state.telephone}
         valueEmail={this.state.email}
         valueWeblink={this.state.weblink}
+        valuePostcode={this.state.postcode}
       />
     );
   }

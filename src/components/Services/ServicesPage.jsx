@@ -23,6 +23,7 @@ const ServicesPage = props => (
                               valueTelephone={props.valueTelephone}
                               valueEmail={props.valueEmail}
                               valueWeblink={props.valueWeblink}
+                              valuePostcode={props.valuePostcode}
                             />
     }
     <ServicesTable
@@ -45,16 +46,36 @@ ServicesPage.propTypes = {
     address: PropTypes.string,
   })),
   handleFormChange: PropTypes.func,
+  handleInputChange: PropTypes.func,
   handleSubmit: PropTypes.func,
   expanded: PropTypes.bool,
   valueName: PropTypes.string,
+  valueImage: PropTypes.string,
+  valueCategory: PropTypes.string,
+  valueRcgpCategory: PropTypes.string,
+  valueDescription: PropTypes.string,
+  valueAddress: PropTypes.string,
+  valueTelephone: PropTypes.number,
+  valueEmail: PropTypes.string,
+  valueWeblink: PropTypes.string,
+  valuePostcode: PropTypes.string,
 };
 ServicesPage.defaultProps = {
   loaded: false,
   allServices: null,
   handleFormChange: null,
+  handleInputChange: null,
   handleSubmit: null,
   expanded: false,
   valueName: '',
+  valueImage: '',
+  valueCategory: '',
+  valueRcgpCategory: '',
+  valueDescription: '',
+  valueAddress: '',
+  valueTelephone: '',
+  valueEmail: '',
+  valueWeblink: '',
+  valuePostcode: ''
 };
 export default ServicesPage;

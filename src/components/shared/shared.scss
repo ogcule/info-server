@@ -27,3 +27,10 @@
   @include reset-button(1.5em);
 }
 }
+.notFound{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  color: red;
+}

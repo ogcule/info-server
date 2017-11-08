@@ -6,6 +6,12 @@
 .servicesBox {
   @extend .outerBox;
 }
+p.required, span.required {
+  margin: 0;
+  padding: 0;
+  color: red;
+  text-align: right;
+}
 .formContainerServices {
   @extend .formContainer;
 form{
@@ -27,6 +33,9 @@ form{
     font-size: 1.4em;
     font-weight: 600;
     margin-bottom: 5px;
+  }
+  input, textarea, select, label {
+    font-size: 1.0em;
   }
   input, textarea, select {
     width: 50%;
