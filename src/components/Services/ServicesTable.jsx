@@ -4,9 +4,12 @@ import styles from './services.scss';
 import linkImg from '../../images/link.png';
 
 const ServicesTable = (props) => {
+  // Loading message when waiting for services from api call
   if (!props.loaded) {
     return <p>.....Loading</p>;
   }
+  /* Have build in logic to deal with the default email and
+  nhs choices link when service does not have this information */
   return (
     <table>
       <thead>
@@ -18,7 +21,7 @@ const ServicesTable = (props) => {
           <th>RCGP Category</th>
         </tr>
       </thead>
-      <tbody>
+    <tbody>
         {props.allServices.map((obj) => {
           const {
             id, name, category, description, image, link, email, telephone, address, rcgp, postcode,
@@ -35,10 +38,25 @@ const ServicesTable = (props) => {
               <td>
                 <ul className={styles.services}>
                   <li><span>Address:</span> {address}</li>
-                  <li><span>postcode:</span> {postcode}</li>
+                  <li><span>postcode:</span>{postcode}</li>
                   <li><span>Tel:</span> {telephone}</li>
-                  <li><span>Email:</span><a href={`mailto:${email}`} target="_blank">{email}</a></li>
-                  <li><span><img src={linkImg} alt="web link" /> :</span><a href={link} target="_blank">{name}</a></li>
+                  <li>
+                    <span>
+                      Email:
+                    </span>
+                    <a href={`mailto:${email}`} target="_blank">
+                      {email === 'noemail@nomail.invalid' ? 'not available' : email}
+                    </a>
+                  </li>
+                  <li>
+                    <span>
+                      <img src={linkImg} alt="web link" />
+                      :
+                    </span>
+                      <a href={link} target="_blank">
+                        {link === 'https://www.nhs.uk/' ? 'nhs choices' : name}
+                      </a>
+                  </li>
                 </ul>
               </td>
               <td>{category}</td>

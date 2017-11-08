@@ -9,6 +9,79 @@ class ServicesContainer extends React.Component {
       allServices: {},
       loaded: false,
       expanded: false,
+      message: false,
+      values: {
+        image: '',
+        rcgpCategory: 'Healthy People',
+        category: 'Community',
+        name: '',
+        description: '',
+        address: '',
+        telephone: '',
+        email: '',
+        weblink: '',
+        postcode: '',
+      },
+      errorMsg: {
+        name: '',
+        description: '',
+        telephone: '',
+        postcode: '',
+        email: '',
+        weblink: '',
+        image: '',
+      },
+    };
+    this.handleFormChange = this.handleFormChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClearForm = this.handleClearForm.bind(this);
+    this.handleMessageChange = this.handleMessageChange.bind(this);
+  }
+  componentDidMount() {
+    this.getAllServices();
+  }
+  // function that call that gets all service information
+  getAllServices() {
+    console.log('getAllServices called');
+    apiServices.requestGetAll()
+    .then((data) => {
+      if (data) {
+        console.log(data);
+        this.setState({
+          allServices: data,
+          loaded: true,
+        });
+      } else {
+        this.setState({
+          loaded: false,
+        });
+      }
+    });
+  }
+  // handler to change state for expanding the questions form
+  handleFormChange() {
+    this.setState(prevState => ({ expanded: !prevState.expanded }));
+  }
+  //handler to change success message
+  handleMessageChange() {
+    this.setState(prevState => ({ message: !prevState.message }));
+  }
+  // handler for changing state from input values on the form
+  handleInputChange(event) {
+    const { target } = event;
+    const { value, name } = target;
+    console.log('name: ', name, 'value: ', value);
+    /* using previousState  */
+    this.setState((previousState) => {
+      return {values: Object.assign({},previousState.values, { [name]: value} )}
+  });
+}
+handleClearForm(e) {
+  event.preventDefault();
+  console.log('clear called');
+  this.setState({
+    values: {
       image: '',
       rcgpCategory: 'Healthy People',
       category: 'Community',
@@ -19,95 +92,91 @@ class ServicesContainer extends React.Component {
       email: '',
       weblink: '',
       postcode: '',
-    };
-    this.handleFormChange = this.handleFormChange.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    },
+  });
   }
-  componentDidMount() {
-    this.getAllServices();
-  }
-  // function that call that gets all service information
-  getAllServices() {
-    apiServices.requestGetAll()
-      .then((data) => {
-        if (data) {
-          console.log(data);
-          this.setState({
-            allServices: data,
-            loaded: true,
-          });
-        } else {
-          this.setState({
-            loaded: false,
-          });
-        }
-      });
-  }
-  // handler to change state for expanding the questions form
-  handleFormChange() {
-    this.setState(prevState => ({ expanded: !prevState.expanded }));
-  }
-  // handler for changing state from input values on the form
-  handleInputChange(event) {
-    const { target } = event;
-    const { value, name } = target;
-
-    this.setState({
-      // computed property name
-      [name]: value,
-    });
-  }
-  handleSubmit(event) {
-    event.preventDefault();
-    const formValuesMap = [
-      { name: this.state.name },
-      { category: this.state.category },
-      { description: this.state.description },
-      { image: this.state.image },
-      { weblink: this.state.weblink },
-      { email: this.state.email },
-      { telephone: this.state.telephone },
-      { address: this.state.address },
-      { rcgpCategory: this.state.rcgpCategory },
-      { postcode: this.state.postcode },
+  defaultFormValues(){
+    let formValuesMap = [
+      { name: this.state.values.name },
+      { category: this.state.values.category },
+      { description: this.state.values.description },
+      { image: this.state.values.image },
+      { weblink: this.state.values.weblink },
+      { email: this.state.values.email },
+      { telephone: this.state.values.telephone },
+      { address: this.state.values.address },
+      { rcgpCategory: this.state.values.rcgpCategory },
+      { postcode: this.state.values.postcode },
     ];
-    console.log('before function', formValuesMap);
     const formValues = formValuesMap.map((key) => {
       if (!Object.values(key)[0]) {
         switch (Object.keys(key)[0]) {
           case 'name':
-            break;
-            return '';
+          return '';
           case 'description':
-            return '';
-            break;
+          return '';
           case 'image':
-            return 'https://dummyimage.com/100x100/000/fff.png&text=service+image';
-            break;
-          case 'postcode':
-            return 'none';
-            break;
+          return 'https://dummyimage.com/100x100/000/fff.png&text=service+image';
           case 'telephone':
-            return '';
-            break;
+          return '';
           case 'email':
-            return 'noemail@nomail.invalid';
-            break;
-           default :
-             return 'not available';
+          return 'noemail@nomail.invalid';
+          case 'weblink':
+          return 'https://www.nhs.uk/';
+          default :
+          return 'not available';
+        }
       }
-    }
-    return Object.values(key)[0];
-      // if ((Object.keys(key)[0] === 'email') && (!Object.values(key)[0])) {
-      //   return 'noservices@nomail.invalid';
-      // }
-      // return Object.values(key)[0] || 'not available';
+      return Object.values(key)[0];
     });
-    console.log('My function results',formValues);
-    apiServices.requestPost(...formValues)
-      .then(data => console.log(data))
-      .catch(error => console.log(error));
+    return formValues;
+  }
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log('My function results', this.defaultFormValues());
+    apiServices.requestPost(...this.defaultFormValues())
+    .then((data) => {
+      /* destructuring from data object and giving
+      default value of '' when error message is not present*/
+      const {
+        name = '',
+        description = '',
+        telephone = '',
+        postcode = '',
+        email = '',
+        weblink = '',
+        image ='',
+      } = data;
+      this.setState({
+        errorMsg: {
+          //shorthand
+          name,
+          description,
+          telephone,
+          postcode,
+          email,
+          weblink,
+          image,
+        },
+      });
+      return this.state.errorMsg;
+    })
+    .then((errorMsg) => {
+      //check to see if any actual error message other than empty strings
+      let noErrorMsg = Object.keys(errorMsg).filter((key) => {
+        return errorMsg[key]
+      })
+      //if no error messages then reload services, clear form and show message
+      if(noErrorMsg.length === 0){
+      this.getAllServices();
+      this.handleClearForm();
+      this.handleMessageChange();
+      setTimeout(() => {
+        this.handleMessageChange();
+      }, 3000);
+    }
+    })
+    .catch(error => console.log(error));
   }
   render() {
     console.log(this.state.loaded);
@@ -119,17 +188,10 @@ class ServicesContainer extends React.Component {
         expanded={this.state.expanded}
         handleFormChange={this.handleFormChange}
         handleInputChange={this.handleInputChange}
+        message={this.state.message}
         handleSubmit={this.handleSubmit}
-        valueImage={this.state.image}
-        valueName={this.state.name}
-        valueCategory={this.state.category}
-        valueRcgpCategory={this.state.rcgpCategory}
-        valueDescription={this.state.description}
-        valueAddress={this.state.address}
-        valueTelephone={this.state.telephone}
-        valueEmail={this.state.email}
-        valueWeblink={this.state.weblink}
-        valuePostcode={this.state.postcode}
+        values={this.state.values}
+        errorMsg={this.state.errorMsg}
       />
     );
   }

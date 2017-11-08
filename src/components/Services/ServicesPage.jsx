@@ -5,25 +5,19 @@ import Subtitle from './../shared/Subtitle';
 import ServicesTable from './ServicesTable';
 import OpenFormBtn from './../shared/OpenFormBtn';
 import ServiceForm from './ServiceForm';
+import SuccessMessage from './../shared/SuccessMessage';
 
 const ServicesPage = props => (
   <div className={styles.servicesBox}>
     <Subtitle subtitle="Services" />
+    {props.message && <SuccessMessage />}
     {!props.expanded ? <OpenFormBtn text="Add Service" openForm={props.handleFormChange} />
                             : <ServiceForm
                               closeForm={props.handleFormChange}
                               handleInputChange={props.handleInputChange}
                               handleSubmit={props.handleSubmit}
-                              valueImage={props.valueImage}
-                              valueName={props.valueName}
-                              valueCategory={props.valueCategory}
-                              valueRcgpCategory={props.valueRcgpCategory}
-                              valueDescription={props.valueDescription}
-                              valueAddress={props.valueAddress}
-                              valueTelephone={props.valueTelephone}
-                              valueEmail={props.valueEmail}
-                              valueWeblink={props.valueWeblink}
-                              valuePostcode={props.valuePostcode}
+                              values={props.values}
+                              errorMsg={props.errorMsg}
                             />
     }
     <ServicesTable
@@ -48,17 +42,10 @@ ServicesPage.propTypes = {
   handleFormChange: PropTypes.func,
   handleInputChange: PropTypes.func,
   handleSubmit: PropTypes.func,
+  values: PropTypes.objectOf(PropTypes.string),
   expanded: PropTypes.bool,
-  valueName: PropTypes.string,
-  valueImage: PropTypes.string,
-  valueCategory: PropTypes.string,
-  valueRcgpCategory: PropTypes.string,
-  valueDescription: PropTypes.string,
-  valueAddress: PropTypes.string,
-  valueTelephone: PropTypes.number,
-  valueEmail: PropTypes.string,
-  valueWeblink: PropTypes.string,
-  valuePostcode: PropTypes.string,
+  message: PropTypes.bool,
+
 };
 ServicesPage.defaultProps = {
   loaded: false,
@@ -67,15 +54,7 @@ ServicesPage.defaultProps = {
   handleInputChange: null,
   handleSubmit: null,
   expanded: false,
-  valueName: '',
-  valueImage: '',
-  valueCategory: '',
-  valueRcgpCategory: '',
-  valueDescription: '',
-  valueAddress: '',
-  valueTelephone: '',
-  valueEmail: '',
-  valueWeblink: '',
-  valuePostcode: ''
+  values: {},
+  message: false,
 };
 export default ServicesPage;

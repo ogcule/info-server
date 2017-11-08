@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './faq.scss';
-import ErrorMsg from './ErrorMessage';
+import ErrorMsg from './../shared/ErrorMessage';
 import CloseFormBtn from './../shared/CloseFormBtn';
 
 const Form = props => (
