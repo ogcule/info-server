@@ -10,6 +10,7 @@ class ServicesContainer extends React.Component {
       loaded: false,
       expanded: false,
       message: false,
+      errorSubmit: false,
       values: {
         image: '',
         rcgpCategory: 'Healthy People',
@@ -176,7 +177,11 @@ handleClearForm(e) {
       }, 3000);
     }
     })
-    .catch(error => console.log(error));
+    .catch((error) => {
+      set.setState({
+        errorSubmit: true,
+      });
+      console.log(error)});
   }
   render() {
     console.log(this.state.loaded);
@@ -192,6 +197,7 @@ handleClearForm(e) {
         handleSubmit={this.handleSubmit}
         values={this.state.values}
         errorMsg={this.state.errorMsg}
+        errorSubmit={this.state.errorSubmit}
       />
     );
   }

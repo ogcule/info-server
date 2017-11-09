@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './services.scss';
 import CloseFormBtn from './../shared/CloseFormBtn';
-import ErrorMsg from './../shared/ErrorMessage';
+import ErrorMsg from './../shared/ErrorMsg';
 import { categories, rcgpCurriculum } from './../../data/categories';
 const ServiceForm = props => (
   <div className={styles.formContainerServices}>

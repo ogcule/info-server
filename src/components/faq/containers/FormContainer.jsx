@@ -10,6 +10,7 @@ class FormContainer extends React.Component {
     this.state = {
       question: '',
       answer: '',
+      errorSubmit: false,
       errorMsg: {
         answer: '',
         question: '',
@@ -47,7 +48,12 @@ class FormContainer extends React.Component {
           setTimeout(() => { this.props.addMessage(); }, 3000);
           this.props.updateQuestions();
         }
-      });
+      })
+      .catch((error) => {
+        set.setState({
+          errorSubmit: true,
+        });
+        console.log(error)});
   }
   render() {
     return (
@@ -59,6 +65,7 @@ class FormContainer extends React.Component {
         valueAnswer={this.state.answer}
         handleInputChange={this.handleInputChange}
         errorAnswer={this.state.errorMsg.answer}
+        errorSubmit={this.state.errorSubmit}
       />
     );
   }

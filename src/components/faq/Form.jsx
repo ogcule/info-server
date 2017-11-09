@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './faq.scss';
-import ErrorMsg from './../shared/ErrorMessage';
+import ErrorMsg from './../shared/ErrorMsg';
 import CloseFormBtn from './../shared/CloseFormBtn';
 
 const Form = props => (
   <div className={styles.formContainerFaq}>
     <CloseFormBtn closeForm={props.closeForm} />
+    {props.errorSubmit && <ErrorMsg msg="Oops, error when trying to submit!"/>}
     <form method="post" className={styles.formBox} onSubmit={props.handleSubmit} noValidate>
       <legend>Add a new frequently asked question</legend>
       <div className={styles.formRow}>
@@ -38,6 +39,7 @@ Form.propTypes = {
   valueAnswer: PropTypes.string,
   handleInputChange: PropTypes.func,
   errorAnswer: PropTypes.string,
+  errorSubmit: PropTypes.bool,
 };
 Form.defaultProps = {
   closeForm: null,
@@ -47,6 +49,7 @@ Form.defaultProps = {
   valueAnswer: null,
   handleInputChange: null,
   errorAnswer: null,
+  errorSubmit: false,
 };
 
 CloseFormBtn.propTypes = {

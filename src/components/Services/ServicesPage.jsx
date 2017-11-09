@@ -6,10 +6,12 @@ import ServicesTable from './ServicesTable';
 import OpenFormBtn from './../shared/OpenFormBtn';
 import ServiceForm from './ServiceForm';
 import SuccessMessage from './../shared/SuccessMessage';
+import ErrorMsg from './../shared/ErrorMsg';
 
 const ServicesPage = props => (
   <div className={styles.servicesBox}>
     <Subtitle subtitle="Services" />
+    {props.errorSubmit && <ErrorMsg msg="Oops, error when trying to submit service!"/>}
     {props.message && <SuccessMessage />}
     {!props.expanded ? <OpenFormBtn text="Add Service" openForm={props.handleFormChange} />
                             : <ServiceForm
@@ -45,6 +47,7 @@ ServicesPage.propTypes = {
   values: PropTypes.objectOf(PropTypes.string),
   expanded: PropTypes.bool,
   message: PropTypes.bool,
+  errorSubmit: PropTypes.bool,
 
 };
 ServicesPage.defaultProps = {
@@ -56,5 +59,6 @@ ServicesPage.defaultProps = {
   expanded: false,
   values: {},
   message: false,
+  errorSubmit: false,
 };
 export default ServicesPage;
