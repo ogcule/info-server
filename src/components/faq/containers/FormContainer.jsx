@@ -34,8 +34,8 @@ class FormContainer extends React.Component {
     event.preventDefault();
     apiFaq.requestPost(this.state.question, this.state.answer)
       .then((data) => {
+        console.log('data from post request:', data);
         const { answer = '', question = '' } = data;
-        console.log(answer, question);
         this.setState({
           errorMsg: {
             question,
@@ -49,11 +49,11 @@ class FormContainer extends React.Component {
           this.props.updateQuestions();
         }
       })
-      .catch((error) => {
-        set.setState({
+      .catch(() => {
+        this.setState({
           errorSubmit: true,
         });
-        console.log(error)});
+      });
   }
   render() {
     return (

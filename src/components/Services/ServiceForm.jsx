@@ -4,6 +4,7 @@ import styles from './services.scss';
 import CloseFormBtn from './../shared/CloseFormBtn';
 import ErrorMsg from './../shared/ErrorMsg';
 import { categories, rcgpCurriculum } from './../../data/categories';
+
 const ServiceForm = props => (
   <div className={styles.formContainerServices}>
     <CloseFormBtn closeForm={props.closeForm} />
@@ -20,7 +21,7 @@ const ServiceForm = props => (
         </select>
       </label>
       <label htmlFor="category">
-           <span className={styles.required}>*</span> Category:
+        <span className={styles.required}>*</span> Category:
           <select id="category" value={props.values.category} name="category" onChange={props.handleInputChange}>
             {categories.map(category => (
               <option key={category} value={category}>
@@ -78,11 +79,13 @@ ServiceForm.propTypes = {
   handleSubmit: PropTypes.func,
   handleInputChange: PropTypes.func,
   values: PropTypes.objectOf(PropTypes.string),
+  errorMsg: PropTypes.objectOf(PropTypes.string),
 };
 ServiceForm.defaultProps = {
   closeForm: null,
   handleSubmit: null,
   handleInputChange: null,
   values: {},
+  errorMsg: {},
 };
 export default ServiceForm;

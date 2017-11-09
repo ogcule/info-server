@@ -21,7 +21,7 @@ const ServicesTable = (props) => {
           <th>RCGP Category</th>
         </tr>
       </thead>
-    <tbody>
+      <tbody>
         {props.allServices.map((obj) => {
           const {
             id, name, category, description, image, link, email, telephone, address, rcgp, postcode,
@@ -53,9 +53,9 @@ const ServicesTable = (props) => {
                       <img src={linkImg} alt="web link" />
                       :
                     </span>
-                      <a href={link} target="_blank">
-                        {link === 'https://www.nhs.uk/' ? 'nhs choices' : name}
-                      </a>
+                    <a href={link} target="_blank">
+                      {link === 'https://www.nhs.uk/' ? 'nhs choices' : name}
+                    </a>
                   </li>
                 </ul>
               </td>
@@ -78,7 +78,7 @@ ServicesTable.propTypes = {
     image: PropTypes.string,
     link: PropTypes.string,
     email: PropTypes.string,
-    telephone: PropTypes.number,
+    telephone: PropTypes.string,
     address: PropTypes.string,
   })),
 };

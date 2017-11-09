@@ -7,7 +7,7 @@ import CloseFormBtn from './../shared/CloseFormBtn';
 const Form = props => (
   <div className={styles.formContainerFaq}>
     <CloseFormBtn closeForm={props.closeForm} />
-    {props.errorSubmit && <ErrorMsg msg="Oops, error when trying to submit!"/>}
+    {props.errorSubmit && <ErrorMsg msg="Oops, error when trying to submit!" />}
     <form method="post" className={styles.formBox} onSubmit={props.handleSubmit} noValidate>
       <legend>Add a new frequently asked question</legend>
       <div className={styles.formRow}>

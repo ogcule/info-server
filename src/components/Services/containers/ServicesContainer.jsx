@@ -1,6 +1,7 @@
 import React from 'react';
 import ServicesPage from './../ServicesPage';
 import apiServices from './../../../api/apiServices';
+import defaultFormValues from './../../../utils/defaultFormValues';
 
 class ServicesContainer extends React.Component {
   constructor(props) {
@@ -38,33 +39,32 @@ class ServicesContainer extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClearForm = this.handleClearForm.bind(this);
     this.handleMessageChange = this.handleMessageChange.bind(this);
+    this.handleClearErrorMsg = this.handleClearErrorMsg.bind(this);
   }
   componentDidMount() {
     this.getAllServices();
   }
   // function that call that gets all service information
   getAllServices() {
-    console.log('getAllServices called');
     apiServices.requestGetAll()
-    .then((data) => {
-      if (data) {
-        console.log(data);
-        this.setState({
-          allServices: data,
-          loaded: true,
-        });
-      } else {
-        this.setState({
-          loaded: false,
-        });
-      }
-    });
+      .then((data) => {
+        if (data) {
+          this.setState({
+            allServices: data,
+            loaded: true,
+          });
+        } else {
+          this.setState({
+            loaded: false,
+          });
+        }
+      });
   }
   // handler to change state for expanding the questions form
   handleFormChange() {
     this.setState(prevState => ({ expanded: !prevState.expanded }));
   }
-  //handler to change success message
+  // handler to change success message
   handleMessageChange() {
     this.setState(prevState => ({ message: !prevState.message }));
   }
@@ -72,120 +72,95 @@ class ServicesContainer extends React.Component {
   handleInputChange(event) {
     const { target } = event;
     const { value, name } = target;
-    console.log('name: ', name, 'value: ', value);
     /* using previousState  */
-    this.setState((previousState) => {
-      return {values: Object.assign({},previousState.values, { [name]: value} )}
-  });
-}
-handleClearForm(e) {
-  event.preventDefault();
-  console.log('clear called');
-  this.setState({
-    values: {
-      image: '',
-      rcgpCategory: 'Healthy People',
-      category: 'Community',
-      name: '',
-      description: '',
-      address: '',
-      telephone: '',
-      email: '',
-      weblink: '',
-      postcode: '',
-    },
-  });
+    this.setState(prevState => (
+      { values: Object.assign({}, prevState.values, { [name]: value }) }
+    ));
   }
-  defaultFormValues(){
-    let formValuesMap = [
-      { name: this.state.values.name },
-      { category: this.state.values.category },
-      { description: this.state.values.description },
-      { image: this.state.values.image },
-      { weblink: this.state.values.weblink },
-      { email: this.state.values.email },
-      { telephone: this.state.values.telephone },
-      { address: this.state.values.address },
-      { rcgpCategory: this.state.values.rcgpCategory },
-      { postcode: this.state.values.postcode },
-    ];
-    const formValues = formValuesMap.map((key) => {
-      if (!Object.values(key)[0]) {
-        switch (Object.keys(key)[0]) {
-          case 'name':
-          return '';
-          case 'description':
-          return '';
-          case 'image':
-          return 'https://dummyimage.com/100x100/000/fff.png&text=service+image';
-          case 'telephone':
-          return '';
-          case 'email':
-          return 'noemail@nomail.invalid';
-          case 'weblink':
-          return 'https://www.nhs.uk/';
-          default :
-          return 'not available';
-        }
-      }
-      return Object.values(key)[0];
+  handleClearForm() {
+    this.setState({
+      values: {
+        image: '',
+        rcgpCategory: 'Healthy People',
+        category: 'Community',
+        name: '',
+        description: '',
+        address: '',
+        telephone: '',
+        email: '',
+        weblink: '',
+        postcode: '',
+      },
     });
-    return formValues;
+  }
+  handleClearErrorMsg() {
+    this.setState({
+      errorMsg: {
+        name: '',
+        description: '',
+        telephone: '',
+        postcode: '',
+        email: '',
+        weblink: '',
+        image: '',
+      },
+    });
   }
   handleSubmit(e) {
     e.preventDefault();
-    console.log('My function results', this.defaultFormValues());
-    apiServices.requestPost(...this.defaultFormValues())
-    .then((data) => {
-      /* destructuring from data object and giving
-      default value of '' when error message is not present*/
-      const {
-        name = '',
-        description = '',
-        telephone = '',
-        postcode = '',
-        email = '',
-        weblink = '',
-        image ='',
-      } = data;
-      this.setState({
-        errorMsg: {
-          //shorthand
-          name,
-          description,
-          telephone,
-          postcode,
-          email,
-          weblink,
-          image,
-        },
-      });
-      return this.state.errorMsg;
-    })
-    .then((errorMsg) => {
-      //check to see if any actual error message other than empty strings
-      let noErrorMsg = Object.keys(errorMsg).filter((key) => {
-        return errorMsg[key]
+    apiServices.requestPost(...defaultFormValues(this.state.values))
+      .then((data) => {
+        /* data from requstPost is either an error message(object)
+        or returned id number if successful */
+        if (typeof data !== 'number') {
+          /* destructuring from data object and giving
+          default value of '' when error message is not present */
+          const {
+            name = '',
+            description = '',
+            telephone = '',
+            postcode = '',
+            email = '',
+            weblink = '',
+            image = '',
+          } = data;
+          this.setState({
+            errorMsg: {
+              // shorthand
+              name,
+              description,
+              telephone,
+              postcode,
+              email,
+              weblink,
+              image,
+            },
+          });
+          return this.state.errorMsg;
+        }
+        return data;
       })
-      //if no error messages then reload services, clear form and show message
-      if(noErrorMsg.length === 0){
-      this.getAllServices();
-      this.handleClearForm();
-      this.handleMessageChange();
-      setTimeout(() => {
-        this.handleMessageChange();
-      }, 3000);
-    }
-    })
-    .catch((error) => {
-      set.setState({
-        errorSubmit: true,
+      .then((results) => {
+        /* if id (number) returned then successful submission
+        and can reload services and clear form, show message */
+        if (typeof results === 'number') {
+          this.getAllServices();
+          this.handleClearForm();
+          this.handleClearErrorMsg();
+          this.handleMessageChange();
+          setTimeout(() => {
+            this.handleMessageChange();
+          }, 3000);
+        }
+      })
+      .catch((error) => {
+        this.setState({
+          errorSubmit: true,
+        });
+        console.log(error);
       });
-      console.log(error)});
   }
   render() {
-    console.log(this.state.loaded);
-    console.log(this.state.allServices);
     return (
       <ServicesPage
         allServices={this.state.allServices}

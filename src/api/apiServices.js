@@ -39,7 +39,6 @@ export default {
       .then(response => response.data)
       .catch((error) => {
         const errorMsgs = {};
-        console.log(Object.keys(error.response.data.error));
         Object.keys(error.response.data.error).map((val) => {
           errorMsgs[val] = error.response.data.error[val].msg;
           return errorMsgs;

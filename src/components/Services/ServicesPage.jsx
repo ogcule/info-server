@@ -11,7 +11,7 @@ import ErrorMsg from './../shared/ErrorMsg';
 const ServicesPage = props => (
   <div className={styles.servicesBox}>
     <Subtitle subtitle="Services" />
-    {props.errorSubmit && <ErrorMsg msg="Oops, error when trying to submit service!"/>}
+    {props.errorSubmit && <ErrorMsg msg="Oops, error when trying to submit service!" />}
     {props.message && <SuccessMessage />}
     {!props.expanded ? <OpenFormBtn text="Add Service" openForm={props.handleFormChange} />
                             : <ServiceForm
@@ -38,7 +38,7 @@ ServicesPage.propTypes = {
     image: PropTypes.string,
     link: PropTypes.string,
     email: PropTypes.string,
-    telephone: PropTypes.number,
+    telephone: PropTypes.string,
     address: PropTypes.string,
   })),
   handleFormChange: PropTypes.func,
@@ -48,7 +48,7 @@ ServicesPage.propTypes = {
   expanded: PropTypes.bool,
   message: PropTypes.bool,
   errorSubmit: PropTypes.bool,
-
+  errorMsg: PropTypes.objectOf(PropTypes.string),
 };
 ServicesPage.defaultProps = {
   loaded: false,
@@ -58,6 +58,7 @@ ServicesPage.defaultProps = {
   handleSubmit: null,
   expanded: false,
   values: {},
+  errorMsg: {},
   message: false,
   errorSubmit: false,
 };

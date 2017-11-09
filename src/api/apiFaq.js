@@ -11,15 +11,9 @@ export default {
         answer, // property shorthand
       }),
     })
-      .then((response) => {
-        console.log(response.data.id);
-        return {
-          id: response.data.id,
-        };
-      })
+      .then(response => response.data.id)
       .catch((error) => {
         const errorMsgs = {};
-        console.log(Object.keys(error.response.data.error));
         Object.keys(error.response.data.error).map((name) => {
           errorMsgs[name] = error.response.data.error[name].msg;
           return errorMsgs;

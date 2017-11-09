@@ -25,7 +25,6 @@ class FaqContainer extends React.Component {
     apiFaq.requestGet()
       .then((data) => {
         if (data) {
-          console.log(data);
           this.setState({
             questions: data,
             loaded: true,
@@ -50,8 +49,6 @@ class FaqContainer extends React.Component {
   }
 
   render() {
-    console.log(typeof (this.state.questions));
-    console.log(this.state.questions);
     return (
       <FaqPage
         messageShown={this.state.messageShown}
